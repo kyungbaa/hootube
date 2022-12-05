@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatAgo } from '../util/date';
 
-export default function VideoCard({ video }) {
+export default function VideoCard({ video, type }) {
   const navigate = useNavigate();
   const { channelTitle, description, title, thumbnails, publishedAt } =
     video.snippet;
   const [descriptionOn, setDescriptionOn] = useState(false);
-
+  const isList = type === 'list';
   const onDescription = () => {
     setDescriptionOn(true);
   };
@@ -18,6 +18,7 @@ export default function VideoCard({ video }) {
 
   return (
     <li
+      className={isList ? 'flex gap-1 ml-5 mb-2' : ''}
       onClick={() => {
         navigate(`/videos/watch/${video.id}`, { state: { video } });
       }}
@@ -28,9 +29,9 @@ export default function VideoCard({ video }) {
         onMouseLeave={outDescription}
       >
         <img
+          className={isList ? 'w-60 rounded-lg' : 'w-full rounded-2xl'}
           src={thumbnails.medium.url}
           alt={title}
-          className="w-full rounded-2xl"
         />
         {descriptionOn && (
           <div className="bg-black/80 w-full h-full absolute top-0 p-5 rounded-2xl ">
@@ -38,9 +39,15 @@ export default function VideoCard({ video }) {
           </div>
         )}
       </div>
-      <div className="px-3">
+      <div className={isList ? 'px-1 w-2/3' : 'px-3 w-2/3'}>
         <p className="text-sm font-semibold my-2 line-clamp-2">{title}</p>
-        <p className="text-xs opacity-80">{channelTitle}</p>
+        <p
+          className={
+            isList ? 'text-sm font-semibold mb-1' : 'text-xs opacity-80'
+          }
+        >
+          {channelTitle}
+        </p>
         <p className="text-xs opacity-80">{formatAgo(publishedAt)}</p>
       </div>
     </li>
