@@ -14,7 +14,6 @@ export default function Videos() {
 
   return (
     <>
-      Videos{keyword ? `🔍${keyword}` : `🔥`}
       {isLoading && <p>Loading....</p>}
       {error && <p>Something is worng. </p>}
       {videos && (

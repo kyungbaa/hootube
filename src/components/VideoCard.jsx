@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { formatAgo } from '../util/date';
 
 export default function VideoCard({ video }) {
+  const navigate = useNavigate();
   const { channelTitle, description, title, thumbnails, publishedAt } =
     video.snippet;
   const [descriptionOn, setDescriptionOn] = useState(false);
@@ -15,7 +17,11 @@ export default function VideoCard({ video }) {
   };
 
   return (
-    <li>
+    <li
+      onClick={() => {
+        navigate(`/videos/watch/${video.id}`, { state: { video } });
+      }}
+    >
       <div
         className="w-full relative"
         onMouseEnter={onDescription}
