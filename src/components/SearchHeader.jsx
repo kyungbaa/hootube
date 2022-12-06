@@ -29,7 +29,7 @@ export default function SearchHeader() {
           placeholder="Search"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-7/12 h-1/5 p-2 pl-6 outline-none text-gray-50 bg-black border border-zinc-800 text-base rounded-l-full"
+          className="w-7/12 h-1/5 p-2 pl-6 outline-none text-gray-50 bg-black border border-zinc-800 text-base rounded-l-full "
         />
         <button className="bg-zinc-800 pl-3 pr-4 rounded-r-full flex items-center justify-center">
           <AiOutlineSearch />

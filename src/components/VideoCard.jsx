@@ -29,13 +29,21 @@ export default function VideoCard({ video, type }) {
         onMouseLeave={outDescription}
       >
         <img
-          className={isList ? 'w-60 rounded-lg' : 'w-full rounded-2xl'}
+          className={isList ? 'w-full rounded-lg' : 'w-full rounded-2xl'}
           src={thumbnails.medium.url}
           alt={title}
         />
         {descriptionOn && (
-          <div className="bg-black/80 w-full h-full absolute top-0 p-5 rounded-2xl ">
-            <p className="line-clamp-5">{description}</p>
+          <div
+            className={
+              isList
+                ? 'bg-black/80 w-full h-full absolute top-0 p-5 rounded-lg  line-clamp-1'
+                : 'bg-black/80 w-full h-full absolute top-0 p-5 rounded-2xl '
+            }
+          >
+            <p className={isList ? 'line-clamp-3' : 'line-clamp-5'}>
+              {description}
+            </p>
           </div>
         )}
       </div>
